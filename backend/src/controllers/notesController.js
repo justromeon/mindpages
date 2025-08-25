@@ -39,9 +39,9 @@ export async function updateNote(req, res) {
   try {
     const {title, content} = req.body
     const modifiedNote = await Note.findByIdAndUpdate(req.params.id, {title, content}, {new: true})
-    modifiedNote === null
-      ? res.status(404).json({message: 'Note does not exist'})
-      : res.status(200).json(modifiedNote) 
+    modifiedNote
+      ? res.status(200).json(modifiedNote)
+      : res.status(404).json({message: 'Note does not exist'}) 
   
   } catch (error) {
     console.error('Error in updateNote controller', error)
@@ -52,9 +52,9 @@ export async function updateNote(req, res) {
 export async function deleteNote(req, res) {
   try {
     const removedNote = await Note.findByIdAndDelete(req.params.id)
-    removedNote === null
-      ? res.status(404).json({message: 'Note does not exist'})
-      : res.status(200).json(removedNote)
+    removedNote
+      ? res.status(200).json(removedNote)
+      : res.status(404).json({message: 'Note does not exist'})
 
   } catch (error) {
     console.error('Error in deleteNote controller', error)
