@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import NavBar from "../components/NavBar"
-import RateLimited from "../components/RateLimited"
 import axios from 'axios'
 import toast from 'react-hot-toast'
+
+import NavBar from "../components/NavBar"
+import RateLimited from "../components/RateLimited"
 
 const Home = () => {
   const [isRateLimited, setIsRateLimited] = useState(false)

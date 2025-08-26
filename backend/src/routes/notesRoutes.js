@@ -1,4 +1,5 @@
 import express from 'express'
+
 import { createNote, deleteNote, getAllNotes, getNoteById, updateNote } from '../controllers/notesController.js'
 
 const router = express.Router()
