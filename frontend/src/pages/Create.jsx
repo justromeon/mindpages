@@ -1,11 +1,39 @@
 import { useState } from "react"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const Create = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsLoading(true)
+
+    try {
+      if (!title.trim() || !content.trim()) {
+        toast.error('All fields are required!')
+
+      } else {
+        await axios.post('http://localhost:3000/api/notes', {
+          title,
+          content
+        })
+        toast.success('Created successfully!')
+        navigate('/')
+      }
+    
+    } catch (error) {
+      console.log('Error creating note', error)
+      toast.error('Failed to create note, try again later')
+    
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return <div className="min-h-screen bg-[var(--color-dark)] text-[var(--color-white)] font-[var(--font-primary)] flex flex-col items-center px-4 py-6">
     <div className="w-full max-w-2xl mb-6">
@@ -18,7 +46,7 @@ const Create = () => {
     </div>
 
     <div className="w-full max-w-2xl bg-[var(--color-light)] text-[var(--color-dark)] rounded-2xl shadow-md p-6 flex flex-col gap-4">
-      <form>
+      <form onSubmit={handleSubmit}>
         <label className="block mb-2 font-semibold">Title</label>
         <input
           type="text"
@@ -40,7 +68,7 @@ const Create = () => {
         <button
           className="cursor-pointer transition-all bg-[var(--color-accent)] text-[var(--color-white)] px-6 py-3 rounded-lg border-[#9a7448] border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[4px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px] mt-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100"
           disabled={isLoading}
-          type="sumbit"
+          type="submit"
         >
           {isLoading ? 'Creating..' : 'Create'}
         </button>
