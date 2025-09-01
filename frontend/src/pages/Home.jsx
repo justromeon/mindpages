@@ -36,7 +36,7 @@ const Home = () => {
     fetchNotes() 
   }, [])
 
-  return <div className="min-h-screen">
+  return <div className="min-h-screen bg-[var(--color-light)]">
     <NavBar />
 
     {isRateLimited && <RateLimited />}

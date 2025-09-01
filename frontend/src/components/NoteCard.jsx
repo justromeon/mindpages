@@ -22,7 +22,7 @@ const NoteCard = ({note}) => {
 
         <div className="flex items-center gap-2">
           <img
-            src="/edit_note.svg"
+            src="/edit.svg"
             alt="Edit"
             className="w-4 h-4 cursor-pointer opacity-70 hover:opacity-100 transition"
           />
