@@ -1,6 +1,28 @@
 import { Link } from "react-router"
+import toast from "react-hot-toast"
+import axios from "axios"
 
-const NoteCard = ({note}) => {
+const NoteCard = ({note, setNotes}) => {
+  const handleDelete = async (e, id) => {
+    e.preventDefault()
+    try {
+      const confirmDelete = window.confirm('Are you sure to delete this note?')
+      
+      if (confirmDelete) {
+        const res = await axios.delete(`http://localhost:3000/api/notes/${id}`)
+        const deletedId = res.data._id
+        setNotes(prev => prev.filter(n => n._id !== deletedId))
+        toast.success('Delete successful')
+      } else {
+        toast('Deletion canceled')
+      }
+    
+    } catch (error) {
+      console.error('Cannot delete note', error)
+      toast.error('Cannot delete at this moment')
+    }
+  }
+  
   return <Link
       to={`/note/${note._id}`}
       className="h-full w-full bg-[var(--color-dark)] rounded-lg overflow-hidden relative group p-3 z-0 shadow-md flex flex-col"
@@ -26,11 +48,13 @@ const NoteCard = ({note}) => {
             alt="Edit"
             className="w-4 h-4 cursor-pointer opacity-70 hover:opacity-100 transition"
           />
-          <img
-            src="/delete.svg"
-            alt="Delete"
-            className="w-4 h-4 cursor-pointer opacity-70 hover:opacity-100 transition"
-          />
+          <button onClick={e => handleDelete(e, note._id)}>
+            <img
+              src="/delete.svg"
+              alt="Delete"
+              className="w-4 h-4 cursor-pointer opacity-70 hover:opacity-100 transition"
+            />
+          </button>
         </div>
       </div>
   </Link>
