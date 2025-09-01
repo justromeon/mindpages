@@ -14,8 +14,7 @@ const NoNotesFound = () => {
       </h2>
 
       <p className="text-[var(--color-white)] mb-8 max-w-md">
-        It looks like you don’t have any notes yet. Start creating your first
-        one to keep track of your thoughts and ideas.
+        Nobody has shared an idea here yet. Be the first to share what's on yourmind
       </p>
 
       <Link
