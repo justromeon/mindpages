@@ -4,8 +4,8 @@ import toast from 'react-hot-toast'
 
 import NavBar from "../components/NavBar"
 import RateLimited from "../components/RateLimited"
-import Spinner from "../components/Spinner"
 import NoteCard from "../components/NoteCard"
+import Loader from "../components/Loader"
 
 const Home = () => {
   const [isRateLimited, setIsRateLimited] = useState(false)
@@ -42,7 +42,7 @@ const Home = () => {
     {isRateLimited && <RateLimited />}
 
     <div className="max-w-7xl mx-auto p-4 mt-6">
-      {isLoading && <Spinner />}
+      {isLoading && <Loader />}
 
       {notes.length > 0 && !isRateLimited && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
