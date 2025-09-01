@@ -39,7 +39,7 @@ const Create = () => {
     <div className="w-full max-w-2xl mb-6">
       <Link 
         to={'/'} 
-        className="text-[var(--color-accent)] hover:underline"
+        className="text-[var(--color-white)] hover:underline"
       >
         ← Back to Notes
       </Link>
@@ -66,7 +66,7 @@ const Create = () => {
         />
   
         <button
-          className="cursor-pointer transition-all bg-[var(--color-accent)] text-[var(--color-white)] px-6 py-3 rounded-lg border-[#9a7448] border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[4px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px] mt-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100"
+          className="cursor-pointer transition-all bg-[var(--color-accent-green)] text-[var(--color-white)] px-6 py-3 rounded-lg border-[#207437] border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[4px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px] mt-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100"
           disabled={isLoading}
           type="submit"
         >
