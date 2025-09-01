@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router"
-import axios from 'axios'
 import toast from 'react-hot-toast'
+
+import api from "../lib/axios"
 
 const Note = () => {
   const [title, setTitle] = useState('')
@@ -14,7 +15,7 @@ const Note = () => {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/notes/${id}`)
+        const res = await api.get(`/notes/${id}`)
         setTitle(res.data.title)
         setContent(res.data.content)
       
@@ -34,7 +35,7 @@ const Note = () => {
     try {
       const confirmDelete = window.confirm('Are you sure to delete this note?')
       if (confirmDelete) {
-        await axios.delete(`http://localhost:3000/api/notes/${id}`)
+        await api.delete(`/notes/${id}`)
         toast.success('Delete successful')
         navigate('/')
       }
@@ -55,7 +56,7 @@ const Note = () => {
         toast.error('All fields are required!')
 
       } else {
-        await axios.put(`http://localhost:3000/api/notes/${id}`, {
+        await api.put(`/notes/${id}`, {
           title,
           content
         })

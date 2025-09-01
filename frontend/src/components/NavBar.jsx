@@ -4,7 +4,16 @@ const NavBar = () => {
   return (
     <nav className="w-full bg-[var(--color-dark)] text-[var(--color-white)] px-4 sm:px-8 py-4">
       <div className="max-w-5xl mx-auto flex justify-between items-center">
-        <div className="text-2xl font-bold tracking-wide">MindPages</div>
+        <div>
+          <img 
+            src="/logo.png" 
+            alt="MindPages Logo" 
+            className="h-8 w-8 inline-block align-middle object-contain mr-2"
+          />
+          <span className="text-2xl font-bold tracking-wide align-middle">
+            MindPages
+          </span>
+        </div>
         <Link
           to={'/create'}
           className="cursor-pointer transition-all bg-[var(--color-accent-green)] text-[var(--color-white)] px-6 py-2 rounded-lg border-[#207437] border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[4px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"

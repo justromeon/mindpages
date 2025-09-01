@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router"
-import axios from 'axios'
 import toast from 'react-hot-toast'
+
+import api from "../lib/axios"
 
 const Create = () => {
   const [title, setTitle] = useState('')
@@ -18,7 +19,7 @@ const Create = () => {
         toast.error('All fields are required!')
 
       } else {
-        await axios.post('http://localhost:3000/api/notes', {
+        await api.post('/notes', {
           title,
           content
         })

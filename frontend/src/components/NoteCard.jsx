@@ -1,6 +1,6 @@
 import { Link } from "react-router"
 import toast from "react-hot-toast"
-import axios from "axios"
+import api from "../lib/axios"
 
 const NoteCard = ({note, setNotes}) => {
   const handleDelete = async (e, id) => {
@@ -9,7 +9,7 @@ const NoteCard = ({note, setNotes}) => {
       const confirmDelete = window.confirm('Are you sure to delete this note?')
       
       if (confirmDelete) {
-        const res = await axios.delete(`http://localhost:3000/api/notes/${id}`)
+        const res = await api.delete(`/notes/${id}`)
         const deletedId = res.data._id
         setNotes(prev => prev.filter(n => n._id !== deletedId))
         toast.success('Delete successful')
